@@ -1,7 +1,8 @@
 package com.github.dhslrl321.webserver
 
-import com.github.dhslrl321.webserver.network.ResponseReplier
-import com.github.dhslrl321.webserver.network.RequestPrinter
+import com.github.dhslrl321.webserver.io.IoHandlers
+import com.github.dhslrl321.webserver.io.IoModels
+import com.github.dhslrl321.webserver.io.IoModels.SYNC_BLOCKING_IO
 import java.net.ServerSocket
 
 class MyWebServer {
@@ -9,15 +10,11 @@ class MyWebServer {
 }
 
 fun main() {
-    val requestPrinter = RequestPrinter()
-    val responseReplier = ResponseReplier()
+    val ioModel = IoModels.SYNC_BLOCKING_IO
+    println("[---my-http-server---]")
+    println("[--------------------]")
+    println("[----initialized!----]\n\n")
+    println("[io-mode: $]\n\n")
 
-    val serverSocket = ServerSocket(8080)
-
-    while (true) {
-        val acceptedSocket = serverSocket.accept()
-
-        requestPrinter.print(acceptedSocket)
-        responseReplier.reply(acceptedSocket)
-    }
+    val ioHandler = IoHandlers.get(SYNC_BLOCKING_IO)
 }
