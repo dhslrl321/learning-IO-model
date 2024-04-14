@@ -1,6 +1,6 @@
-package com.github.dhslrl321.webserver.io
+package com.github.dhslrl321.webserver.server
 
-enum class IoModels {
+enum class IoModel {
     SYNC_BLOCKING_IO,
     SYNC_NON_BLOCKING_IO,
 

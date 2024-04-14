@@ -1,20 +1,16 @@
 package com.github.dhslrl321.webserver
 
-import com.github.dhslrl321.webserver.io.IoHandlers
-import com.github.dhslrl321.webserver.io.IoModels
-import com.github.dhslrl321.webserver.io.IoModels.SYNC_BLOCKING_IO
-import java.net.ServerSocket
+import com.github.dhslrl321.webserver.server.IoServers
+import com.github.dhslrl321.webserver.server.IoModel.*
 
-class MyWebServer {
-
-}
+val MODE = SYNC_BLOCKING_IO
 
 fun main() {
-    val ioModel = IoModels.SYNC_BLOCKING_IO
     println("[---my-http-server---]")
     println("[--------------------]")
-    println("[----initialized!----]\n\n")
-    println("[io-mode: $]\n\n")
+    println("[----initialized!----]")
+    println("[io-mode: ${MODE}]\n\n")
 
-    val ioHandler = IoHandlers.get(SYNC_BLOCKING_IO)
+    val server = IoServers.get(MODE)
+    server.start()
 }

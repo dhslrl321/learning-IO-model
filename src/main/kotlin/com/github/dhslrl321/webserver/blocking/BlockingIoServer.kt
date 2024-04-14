@@ -1,16 +1,15 @@
 package com.github.dhslrl321.webserver.blocking
 
-import com.github.dhslrl321.webserver.io.IoHandler
-import com.github.dhslrl321.webserver.network.AcceptedSocketHandler
+import com.github.dhslrl321.webserver.server.IoServer
 import java.net.ServerSocket
 import java.util.concurrent.Executors
 
 
-class BlockingIoHandler: IoHandler {
+class BlockingIoServer: IoServer {
     private val threadPool = Executors.newFixedThreadPool(POOLING_THREAD_COUNT)
     private val handler = AcceptedSocketHandler()
 
-    override fun handle() {
+    override fun start() {
         val serverSocket = ServerSocket(8080)
 
         while (true) {
@@ -23,6 +22,6 @@ class BlockingIoHandler: IoHandler {
     }
 
     companion object {
-        const val POOLING_THREAD_COUNT = 10
+        const val POOLING_THREAD_COUNT = 2
     }
 }
